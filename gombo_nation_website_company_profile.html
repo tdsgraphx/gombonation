@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gombo Nation | The Information Order</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        burgundy: '#8B0000',
+                        deepCrimson: '#7A0000',
+                        antiqueGold: '#D4AF37',
+                        brass: '#C5A059',
+                        parchment: '#F9F8F6',
+                        parchmentDark: '#EFECE6',
+                        charcoal: '#222222'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9F8F6;
+            color: #222222;
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        .bg-burgundy-custom {
+            background-color: #8B0000;
+        }
+        .text-gold-custom {
+            color: #D4AF37;
+        }
+        .border-gold-custom {
+            border-color: #D4AF37;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #EFECE6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5A059;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-parchment text-charcoal antialiased selection:bg-antiqueGold selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-burgundy text-white shadow-xl border-b border-antiqueGold/40 backdrop-blur-md bg-opacity-95">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+            <!-- Logo & Brand -->
+            <a href="#home" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 rounded-full bg-antiqueGold flex items-center justify-center text-burgundy shadow-inner border border-white/20 group-hover:scale-105 transition duration-300">
+                    <i class="fa-solid fa-chess-rook text-2xl"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-2xl font-bold tracking-wider text-white">GOMBO NATION</span>
+                    <span class="block text-xs uppercase tracking-[0.25em] text-antiqueGold">The Information Order</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#home" class="hover:text-antiqueGold transition">Home</a>
+                <a href="#about" class="hover:text-antiqueGold transition">About Us</a>
+                <a href="#order" class="hover:text-antiqueGold transition">The Order</a>
+                <a href="#services" class="hover:text-antiqueGold transition">Mandates & Services</a>
+                <a href="#lodges" class="hover:text-antiqueGold transition">Lodges & Membership</a>
+                <a href="#profile" class="hover:text-antiqueGold transition font-semibold text-antiqueGold">Company Profile</a>
+                <a href="#contact" class="hover:text-antiqueGold transition">Contact</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#contact" class="px-5 py-2.5 rounded border border-antiqueGold text-antiqueGold font-semibold hover:bg-antiqueGold hover:text-burgundy transition duration-300 shadow-md">
+                    Join Order
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="lg:hidden text-white focus:outline-none p-2 rounded hover:bg-white/10">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-deepCrimson border-t border-antiqueGold/30 px-6 py-6 space-y-4 shadow-2xl">
+            <a href="#home" class="block text-white hover:text-antiqueGold transition py-1">Home</a>
+            <a href="#about" class="block text-white hover:text-antiqueGold transition py-1">About Us</a>
+            <a href="#order" class="block text-white hover:text-antiqueGold transition py-1">The Order</a>
+            <a href="#services" class="block text-white hover:text-antiqueGold transition py-1">Mandates & Services</a>
+            <a href="#lodges" class="block text-white hover:text-antiqueGold transition py-1">Lodges & Membership</a>
+            <a href="#profile" class="block text-antiqueGold font-semibold transition py-1">Company Profile Viewer</a>
+            <a href="#contact" class="block text-white hover:text-antiqueGold transition py-1">Contact</a>
+            <div class="pt-4 border-t border-white/10">
+                <a href="#contact" class="block text-center w-full py-3 bg-antiqueGold text-burgundy font-bold rounded shadow">Join Order</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-burgundy text-white min-h-[90vh] flex items-center overflow-hidden border-b-4 border-antiqueGold">
+        <!-- Background decorative geometric overlay -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-antiqueGold/10 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded bg-antiqueGold/20 border border-antiqueGold/50 text-antiqueGold text-xs uppercase tracking-[0.3em]">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Institutional Sovereign Intelligence</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-serif font-bold tracking-tight leading-tight">
+                        The Information <span class="text-antiqueGold italic font-serif">Order.</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-parchment/90 font-light max-w-2xl leading-relaxed">
+                        Gombo Nation is an elite sovereign institution dedicated to structural intelligence, advanced information architecture, strategic communications, and sovereign asset safeguarding across Southern Africa and beyond.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
+                        <a href="#profile" class="px-8 py-4 bg-antiqueGold text-burgundy font-bold rounded shadow-lg hover:bg-amber-400 transition text-center tracking-wide">
+                            Explore Company Profile
+                        </a>
+                        <a href="#services" class="px-8 py-4 border border-antiqueGold text-antiqueGold font-semibold rounded hover:bg-white/10 transition text-center tracking-wide">
+                            Our Mandates
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 text-parchment/80 text-sm">
+                        <div>
+                            <span class="block text-2xl font-serif font-bold text-antiqueGold">Sovereign</span>
+                            <span>Intelligence Network</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-serif font-bold text-antiqueGold">Strict</span>
+                            <span>Lodge Confidentiality</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-serif font-bold text-antiqueGold">Global</span>
+                            <span>Strategic Standards</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Emblem Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md bg-deepCrimson p-8 rounded-xl border border-antiqueGold/40 shadow-2xl text-center group">
+                        <div class="absolute -top-4 -right-4 w-12 h-12 bg-antiqueGold text-burgundy rounded-full flex items-center justify-center font-bold shadow-lg">
+                            <i class="fa-solid fa-crown text-xl"></i>
+                        </div>
+                        <div class="w-32 h-32 mx-auto bg-parchment/5 rounded-full flex items-center justify-center border-2 border-antiqueGold/60 mb-6 shadow-inner group-hover:rotate-6 transition duration-500">
+                            <i class="fa-solid fa-dragon text-6xl text-antiqueGold"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-white mb-2">GOMBO NATION</h3>
+                        <p class="text-xs uppercase tracking-[0.3em] text-antiqueGold mb-6">THE INFORMATION ORDER</p>
+                        <p class="text-sm text-parchment/80 italic mb-6">
+                            "Guardians of truth, architects of institutional integrity, and custodians of high-level intelligence."
+                        </p>
+                        <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs text-parchment/70">
+                            <span>Lodge Auth: Active</span>
+                            <span class="text-antiqueGold font-semibold">Established 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us / The Codex Section -->
+    <section id="about" class="py-24 bg-parchment relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-[0.3em] text-burgundy font-semibold">Institutional Heritage</span>
+                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-burgundy mt-2 mb-4">The Codex of Gombo Nation</h2>
+                <div class="w-24 h-1 bg-antiqueGold mx-auto"></div>
+                <p class="text-gray-600 mt-4 text-base sm:text-lg">
+                    Rooted in rigorous discipline, sovereign governance, and elite data orchestration, we operate at the intersection of high strategy and institutional defense.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md border-t-4 border-burgundy hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 rounded bg-burgundy/10 text-burgundy flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-book-atlas"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-burgundy mb-3">Sovereign Mission</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        To curate, protect, and disseminate high-grade strategic intelligence that empowers corporate titans, sovereign entities, and elite lodge members to navigate complex geopolitical and market landscapes.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-md border-t-4 border-antiqueGold hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 rounded bg-antiqueGold/10 text-amber-700 flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-chess-rook"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-burgundy mb-3">Structural Integrity</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Built like an impregnable fortress, our operational protocols ensure absolute confidentiality, foolproof information archiving, and unbreakable trust between agents and the order.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-md border-t-4 border-burgundy hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 rounded bg-burgundy/10 text-burgundy flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-burgundy mb-3">Institutional Heritage</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Combining centuries-old traditions of honor and order with cutting-edge 21st-century digital intelligence frameworks, Gombo Nation stands as a premier beacon of executive excellence.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Core Mandates Section -->
+    <section id="services" class="py-24 bg-burgundy text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-[0.3em] text-antiqueGold font-semibold">Core Capabilities</span>
+                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mt-2 mb-4">Mandates & Services</h2>
+                <div class="w-24 h-1 bg-antiqueGold mx-auto"></div>
+                <p class="text-parchment/80 mt-4 text-base sm:text-lg">
+                    Delivering precision solutions across four foundational pillars of modern institutional power.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Mandate 1 -->
+                <div class="bg-deepCrimson p-8 rounded-lg border border-antiqueGold/30 flex flex-col justify-between hover:border-antiqueGold transition duration-300">
+                    <div>
+                        <div class="text-antiqueGold text-3xl mb-4">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold mb-3 text-white">Advanced Intelligence</h3>
+                        <p class="text-parchment/80 text-sm leading-relaxed">
+                            Comprehensive market research, threat analysis, and deep data analytics tailored for high-stakes decision-makers.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 text-xs text-antiqueGold uppercase tracking-wider font-semibold">
+                        Mandate Alpha
+                    </div>
+                </div>
+
+                <!-- Mandate 2 -->
+                <div class="bg-deepCrimson p-8 rounded-lg border border-antiqueGold/30 flex flex-col justify-between hover:border-antiqueGold transition duration-300">
+                    <div>
+                        <div class="text-antiqueGold text-3xl mb-4">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold mb-3 text-white">Strategic Communications</h3>
+                        <p class="text-parchment/80 text-sm leading-relaxed">
+                            Executive brand positioning, crisis management messaging, and sovereign-grade public relations orchestration.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 text-xs text-antiqueGold uppercase tracking-wider font-semibold">
+                        Mandate Beta
+                    </div>
+                </div>
+
+                <!-- Mandate 3 -->
+                <div class="bg-deepCrimson p-8 rounded-lg border border-antiqueGold/30 flex flex-col justify-between hover:border-antiqueGold transition duration-300">
+                    <div>
+                        <div class="text-antiqueGold text-3xl mb-4">
+                            <i class="fa-solid fa-vault"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold mb-3 text-white">Institutional Archiving</h3>
+                        <p class="text-parchment/80 text-sm leading-relaxed">
+                            Secure document curation, historical ledger preservation, and encrypted digital vault management systems.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 text-xs text-antiqueGold uppercase tracking-wider font-semibold">
+                        Mandate Gamma
+                    </div>
+                </div>
+
+                <!-- Mandate 4 -->
+                <div class="bg-deepCrimson p-8 rounded-lg border border-antiqueGold/30 flex flex-col justify-between hover:border-antiqueGold transition duration-300">
+                    <div>
+                        <div class="text-antiqueGold text-3xl mb-4">
+                            <i class="fa-solid fa-id-card-clip"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold mb-3 text-white">Membership Lodges</h3>
+                        <p class="text-parchment/80 text-sm leading-relaxed">
+                            Exclusive network administration, agent credentialing, and high-level stakeholder summits across Southern Africa.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 text-xs text-antiqueGold uppercase tracking-wider font-semibold">
+                        Mandate Delta
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lodges & Membership Section -->
+    <section id="lodges" class="py-24 bg-parchment">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-xs uppercase tracking-[0.3em] text-burgundy font-semibold">Exclusive Network</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-burgundy">Lodge Membership & Agent Standards</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Membership in Gombo Nation is strictly vetted through an institutional clearance protocol. Agents undergo rigorous verification, upholding the highest ethical, intellectual, and professional standards of "The Information Order."
+                    </p>
+                    <ul class="space-y-4 text-sm text-gray-700">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-circle-check text-antiqueGold mt-1 text-lg"></i>
+                            <span><strong>Agent Credentialing:</strong> Unique lodge numbers, digital identification cards, and secure registry enrollment.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-circle-check text-antiqueGold mt-1 text-lg"></i>
+                            <span><strong>Regional Lodges:</strong> Access to private executive lounges, confidential meeting facilities, and high-level briefings.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-circle-check text-antiqueGold mt-1 text-lg"></i>
+                            <span><strong>Lifelong Brotherhood & Sisterhood:</strong> Bound by unbreakable codes of confidentiality and mutual advancement.</span>
+                        </li>
+                    </ul>
+                    <div class="pt-4">
+                        <a href="#contact" class="inline-block px-8 py-3 bg-burgundy text-white font-semibold rounded hover:bg-deepCrimson transition shadow">
+                            Apply for Agent Credential
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sample Membership Card Preview -->
+                <div class="bg-gradient-to-br from-burgundy to-deepCrimson p-8 rounded-xl shadow-2xl border border-antiqueGold text-white relative">
+                    <div class="absolute top-4 right-4 text-antiqueGold/30 text-6xl">
+                        <i class="fa-solid fa-shield"></i>
+                    </div>
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h4 class="font-serif text-xl font-bold text-antiqueGold">GOMBO NATION</h4>
+                            <p class="text-[10px] uppercase tracking-[0.2em] text-parchment/70">Membership Card</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-antiqueGold text-burgundy flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-crown text-sm"></i>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-sm bg-black/20 p-4 rounded border border-white/10">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <span class="block text-[10px] text-antiqueGold uppercase">Agent Name</span>
+                                <span class="font-semibold text-white">Mcebo M.</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] text-antiqueGold uppercase">Lodge Number</span>
+                                <span class="font-semibold text-white">GN-0041-ZA</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-white/10">
+                            <div>
+                                <span class="block text-[10px] text-antiqueGold uppercase">Occupation</span>
+                                <span class="font-semibold text-white">Chief Information Officer</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] text-antiqueGold uppercase">Status</span>
+                                <span class="text-emerald-400 font-semibold flex items-center"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Active Agent</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex justify-between items-center text-xs text-parchment/60 pt-4 border-t border-antiqueGold/30">
+                        <span>THE INFORMATION ORDER.</span>
+                        <span class="font-mono text-antiqueGold">www.gombonation.co.za</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Company Profile Document Viewer Section -->
+    <section id="profile" class="py-24 bg-burgundy text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-[0.3em] text-antiqueGold font-semibold">Stakeholder Resource</span>
+                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mt-2 mb-4">Digital Company Profile Viewer</h2>
+                <div class="w-24 h-1 bg-antiqueGold mx-auto"></div>
+                <p class="text-parchment/80 mt-4 text-base sm:text-lg">
+                    Interactive document reader for corporate stakeholders, investors, and prospective partners.
+                </p>
+            </div>
+
+            <!-- Profile Reader Container -->
+            <div class="bg-parchment text-charcoal rounded-xl shadow-2xl border-4 border-antiqueGold overflow-hidden">
+                <!-- Reader Navigation Tabs -->
+                <div class="bg-deepCrimson px-6 py-4 flex flex-wrap gap-2 border-b border-antiqueGold/40">
+                    <button onclick="switchTab('overview')" id="tab-overview" class="profile-tab px-5 py-2.5 rounded text-sm font-semibold bg-antiqueGold text-burgundy shadow transition">
+                        1. Corporate Overview
+                    </button>
+                    <button onclick="switchTab('governance')" id="tab-governance" class="profile-tab px-5 py-2.5 rounded text-sm font-semibold bg-white/10 text-white hover:bg-white/20 transition">
+                        2. Governance & Leadership
+                    </button>
+                    <button onclick="switchTab('operations')" id="tab-operations" class="profile-tab px-5 py-2.5 rounded text-sm font-semibold bg-white/10 text-white hover:bg-white/20 transition">
+                        3. Core Operations
+                    </button>
+                    <button onclick="switchTab('contactinfo')" id="tab-contactinfo" class="profile-tab px-5 py-2.5 rounded text-sm font-semibold bg-white/10 text-white hover:bg-white/20 transition">
+                        4. Official Contacts
+                    </button>
+                </div>
+
+                <!-- Reader Content Pane -->
+                <div class="p-8 sm:p-12 min-h-[400px] bg-white relative">
+                    <!-- Tab 1: Overview -->
+                    <div id="content-overview" class="profile-content space-y-6">
+                        <div class="flex items-center space-x-4 border-b pb-4">
+                            <div class="w-12 h-12 bg-burgundy text-antiqueGold rounded-lg flex items-center justify-center font-bold text-xl">
+                                <i class="fa-solid fa-building-shield"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-2xl font-bold text-burgundy">Gombo Nation (Pty) Ltd</h3>
+                                <p class="text-xs uppercase tracking-widest text-gray-500">The Information Order — Official Profile</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed text-base">
+                            Gombo Nation is registered as a premier sovereign intelligence and institutional architecture firm. We specialize in synthesizing complex data matrices into actionable executive intelligence, high-level public relations, and secured archive management.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                            <div class="bg-parchment p-5 rounded border border-gray-200">
+                                <h4 class="font-bold text-burgundy mb-2">Foundational Philosophy</h4>
+                                <p class="text-sm text-gray-600">Integrity, discretion, and absolute structural precision in every engagement.</p>
+                            </div>
+                            <div class="bg-parchment p-5 rounded border border-gray-200">
+                                <h4 class="font-bold text-burgundy mb-2">Target Stakeholders</h4>
+                                <p class="text-sm text-gray-600">Sovereign funds, corporate boards, elite lodges, and institutional leaders.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Governance -->
+                    <div id="content-governance" class="profile-content space-y-6 hidden">
+                        <h3 class="font-serif text-2xl font-bold text-burgundy">Governance & Executive Council</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            The Order is governed by a council of senior intelligence directors and institutional archivists who ensure adherence to our strict ethical code and operational mandates.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="p-4 rounded bg-parchment border-l-4 border-burgundy">
+                                <h4 class="font-bold text-burgundy">Grand Chancellor & Chief Strategist</h4>
+                                <p class="text-sm text-gray-600">Oversees strategic expansion, government relations, and overarching lodge mandates.</p>
+                            </div>
+                            <div class="p-4 rounded bg-parchment border-l-4 border-antiqueGold">
+                                <h4 class="font-bold text-burgundy">Director of Intelligence & Information Architecture</h4>
+                                <p class="text-sm text-gray-600">Manages secure data vaults, intelligence synthesis, and technological infrastructure.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Operations -->
+                    <div id="content-operations" class="profile-content space-y-6 hidden">
+                        <h3 class="font-serif text-2xl font-bold text-burgundy">Operational Methodology</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Our operations follow a structured 4-phase protocol:
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-700">
+                            <li class="flex items-center space-x-3">
+                                <span class="w-6 h-6 rounded-full bg-burgundy text-white flex items-center justify-center text-xs font-bold">1</span>
+                                <span><strong>Intake & Vetting:</strong> Rigorous security clearance and assignment of confidential lodge ID.</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-6 h-6 rounded-full bg-burgundy text-white flex items-center justify-center text-xs font-bold">2</span>
+                                <span><strong>Intelligence Gathering:</strong> Secure field research, analytics, and source verification.</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-6 h-6 rounded-full bg-burgundy text-white flex items-center justify-center text-xs font-bold">3</span>
+                                <span><strong>Strategic Formulation:</strong> Designing high-impact solutions and secure archiving plans.</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-6 h-6 rounded-full bg-burgundy text-white flex items-center justify-center text-xs font-bold">4</span>
+                                <span><strong>Execution & Curation:</strong> Delivering final briefs and maintaining permanent encrypted vaults.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Tab 4: Contact Info -->
+                    <div id="content-contactinfo" class="profile-content space-y-6 hidden">
+                        <h3 class="font-serif text-2xl font-bold text-burgundy">Official Corporate Coordinates</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Reach out through our secure communication lines for institutional partnerships or agent credentials.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div class="p-4 bg-parchment rounded border">
+                                <span class="block text-xs uppercase font-bold text-gray-500 mb-1">Primary Telephone</span>
+                                <a href="tel:+27768349041" class="text-burgundy font-semibold hover:underline">(+27) 076 834 9041</a>
+                            </div>
+                            <div class="p-4 bg-parchment rounded border">
+                                <span class="block text-xs uppercase font-bold text-gray-500 mb-1">Secondary Telephone</span>
+                                <a href="tel:+27875101669" class="text-burgundy font-semibold hover:underline">(+27) 087 510 1669</a>
+                            </div>
+                            <div class="p-4 bg-parchment rounded border">
+                                <span class="block text-xs uppercase font-bold text-gray-500 mb-1">Official Emails</span>
+                                <a href="mailto:mcebom@gombonation.co.za" class="text-burgundy font-semibold block hover:underline">mcebom@gombonation.co.za</a>
+                                <a href="mailto:info@gombonation.co.za" class="text-burgundy font-semibold block hover:underline">info@gombonation.co.za</a>
+                            </div>
+                            <div class="p-4 bg-parchment rounded border">
+                                <span class="block text-xs uppercase font-bold text-gray-500 mb-1">Official Web Portal</span>
+                                <a href="https://www.gombonation.co.za" target="_blank" class="text-burgundy font-semibold hover:underline">www.gombonation.co.za</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Document Footer Action -->
+                    <div class="mt-12 pt-6 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500">
+                        <span>Document ID: GN-PROFILE-2026-REV4</span>
+                        <button onclick="alertBox('Company profile document package downloaded securely.')" class="mt-2 sm:mt-0 px-4 py-2 bg-burgundy text-white rounded font-semibold hover:bg-deepCrimson transition">
+                            <i class="fa-solid fa-download mr-2"></i> Download Full Brochure (PDF)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-parchment">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-[0.3em] text-burgundy font-semibold">Secure Communications</span>
+                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-burgundy mt-2 mb-4">Connect with the Order</h2>
+                <div class="w-24 h-1 bg-antiqueGold mx-auto"></div>
+                <p class="text-gray-600 mt-4 text-base sm:text-lg">
+                    Inquire about agent membership, intelligence briefs, or corporate advisory services.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Contact Info Cards -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-burgundy flex items-start space-x-4">
+                        <div class="text-burgundy text-2xl mt-1"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <h4 class="font-bold text-burgundy mb-1">Telephone Lines</h4>
+                            <p class="text-gray-600 text-sm">(+27) 076 834 9041</p>
+                            <p class="text-gray-600 text-sm">(+27) 087 510 1669</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-antiqueGold flex items-start space-x-4">
+                        <div class="text-amber-700 text-2xl mt-1"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <h4 class="font-bold text-burgundy mb-1">Electronic Mail</h4>
+                            <p class="text-gray-600 text-sm">mcebom@gombonation.co.za</p>
+                            <p class="text-gray-600 text-sm">info@gombonation.co.za</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-burgundy flex items-start space-x-4">
+                        <div class="text-burgundy text-2xl mt-1"><i class="fa-solid fa-globe"></i></div>
+                        <div>
+                            <h4 class="font-bold text-burgundy mb-1">Web Portal</h4>
+                            <p class="text-gray-600 text-sm">www.gombonation.co.za</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-deepCrimson text-white p-6 rounded-lg shadow-md border border-antiqueGold">
+                        <h4 class="font-serif text-lg font-bold text-antiqueGold mb-2">Lodge Security Notice</h4>
+                        <p class="text-xs text-parchment/80 leading-relaxed">
+                            All communications sent through this portal are encrypted and handled in accordance with the Gombo Nation Information Order protocols.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-lg shadow-md border border-gray-200">
+                    <form id="inquiry-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs uppercase font-bold text-gray-700 mb-2">Full Name / Agent Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:border-burgundy text-sm" placeholder="e.g. Mcebo M.">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase font-bold text-gray-700 mb-2">Electronic Mail</label>
+                                <input type="email" required class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:border-burgundy text-sm" placeholder="e.g. mcebom@gombonation.co.za">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs uppercase font-bold text-gray-700 mb-2">Contact Telephone</label>
+                                <input type="tel" required class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:border-burgundy text-sm" placeholder="e.g. +27 76 834 9041">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase font-bold text-gray-700 mb-2">Inquiry Type</label>
+                                <select class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:border-burgundy text-sm bg-white">
+                                    <option>Agent Membership Application</option>
+                                    <option>Strategic Intelligence Advisory</option>
+                                    <option>Institutional Archiving</option>
+                                    <option>General Corporate Inquiry</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-bold text-gray-700 mb-2">Message / Brief Details</label>
+                            <rows="4" required class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:border-burgundy text-sm" placeholder="Enter your confidential inquiry here..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-burgundy text-white font-bold rounded shadow hover:bg-deepCrimson transition tracking-wider uppercase text-sm">
+                            Transmit Secure Message
+                        </button>
+                    </form>
+                    <!-- Custom Notification Box instead of alert() -->
+                    <div id="form-success-msg" class="hidden mt-6 p-4 bg-emerald-50 border border-emerald-300 text-emerald-800 rounded text-sm text-center">
+                        <i class="fa-solid fa-circle-check text-emerald-600 mr-2"></i> Message transmitted securely to Gombo Nation headquarters. An agent will be in touch shortly.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-burgundy text-white border-t-4 border-antiqueGold py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="space-y-4 md:col-span-2">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-antiqueGold flex items-center justify-center text-burgundy font-bold">
+                            <i class="fa-solid fa-chess-rook"></i>
+                        </div>
+                        <span class="font-serif text-2xl font-bold tracking-wider">GOMBO NATION</span>
+                    </div>
+                    <p class="text-parchment/80 text-sm max-w-md leading-relaxed">
+                        The Information Order. Providing elite sovereign intelligence, strategic communications, and institutional archiving across Southern Africa.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-antiqueGold mb-4 text-lg">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-parchment/80">
+                        <li><a href="#home" class="hover:text-antiqueGold transition">Home</a></li>
+                        <li><a href="#about" class="hover:text-antiqueGold transition">About Us</a></li>
+                        <li><a href="#services" class="hover:text-antiqueGold transition">Mandates & Services</a></li>
+                        <li><a href="#profile" class="hover:text-antiqueGold transition">Company Profile</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-antiqueGold mb-4 text-lg">Official Web</h4>
+                    <p class="text-sm text-parchment/80 mb-2">www.gombonation.co.za</p>
+                    <p class="text-sm text-parchment/80 mb-2">mcebom@gombonation.co.za</p>
+                    <p class="text-sm text-parchment/80">info@gombonation.co.za</p>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-xs text-parchment/60">
+                <p>&copy; 2026 Gombo Nation ("The Information Order"). All Rights Reserved.</p>
+                <p class="mt-2 sm:mt-0 text-antiqueGold font-semibold">THE INFORMATION ORDER.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu & Tab Switching -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Company Profile Tab Switcher
+        function switchTab(tabName) {
+            // Hide all contents
+            document.querySelectorAll('.profile-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+            // Reset all tabs
+            document.querySelectorAll('.profile-tab').forEach(el => {
+                el.classList.remove('bg-antiqueGold', 'text-burgundy', 'shadow');
+                el.classList.add('bg-white/10', 'text-white');
+            });
+
+            // Show selected content
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+
+            // Highlight selected tab
+            const activeTab = document.getElementById('tab-' + tabName);
+            activeTab.classList.remove('bg-white/10', 'text-white');
+            activeTab.classList.add('bg-antiqueGold', 'text-burgundy', 'shadow');
+        }
+
+        // Custom notification box (no alert())
+        function alertBox(message) {
+            const successBox = document.getElementById('form-success-msg');
+            successBox.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-2"></i> ${message}`;
+            successBox.classList.remove('hidden');
+            setTimeout(() => {
+                successBox.classList.add('hidden');
+            }, 6000);
+        }
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const successBox = document.getElementById('form-success-msg');
+            successBox.classList.remove('hidden');
+            document.getElementById('inquiry-form').reset();
+            setTimeout(() => {
+                successBox.classList.add('hidden');
+            }, 6000);
+        }
+    </script>
+</body>
+</html>
